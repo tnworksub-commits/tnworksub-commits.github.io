@@ -1,120 +1,53 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
+<html lang="ja"><head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
 <title>作業ログ</title>
-<style>
-  :root {
-    --bg: #fbfbfa;
-    --fg: #2a2a28;
-    --muted: #8a8a84;
-    --line: #e8e6e1;
-    --card: #ffffff;
-    --accent: #6b7a8f;
+<link rel="stylesheet" href="style.css">
+</head><body><div class="wrap">
+<header class="site"><h1>作業ログ</h1><p class="sub">Daily Report</p></header>
+<nav class="top"><a class="active" href="index.html">日次</a><a href="weekly.html">週次</a><a href="monthly.html">月次</a><a href="about.html">About</a></nav>
+<ul class="list" id="daily-list">
+<li><a href="daily/2026-07-01.html"><span class="date">2026-07-01（水）</span><span class="meta"><span><b>3h22m</b></span><span>02:31〜20:40</span></span></a></li>
+<li><a href="daily/2026-06-30.html"><span class="date">2026-06-30（火）</span><span class="meta"><span><b>11h48m</b></span><span>00:11〜23:35</span></span></a></li>
+<li><a href="daily/2026-06-29.html"><span class="date">2026-06-29（月）</span><span class="meta"><span><b>2h47m</b></span><span>17:27〜23:34</span></span></a></li>
+<li><a href="daily/2026-06-28.html"><span class="date">2026-06-28（日）</span><span class="meta"><span><b>0h37m</b></span><span>22:56〜23:33</span></span></a></li>
+<li><a href="daily/2026-06-27.html"><span class="date">2026-06-27（土）</span><span class="meta"><span><b>0h00m</b></span></span></a></li>
+<li><a href="daily/2026-06-26.html"><span class="date">2026-06-26（金）</span><span class="meta"><span><b>8h21m</b></span><span>00:00〜22:23</span></span></a></li>
+<li><a href="daily/2026-06-25.html"><span class="date">2026-06-25（木）</span><span class="meta"><span><b>9h51m</b></span><span>00:36〜24:00</span></span></a></li>
+<li><a href="daily/2026-06-24.html"><span class="date">2026-06-24（水）</span><span class="meta"><span><b>2h10m</b></span><span>20:27〜23:12</span></span></a></li>
+<li><a href="daily/2026-06-23.html"><span class="date">2026-06-23（火）</span><span class="meta"><span><b>6h50m</b></span><span>01:05〜18:34</span></span></a></li>
+<li><a href="daily/2026-06-22.html"><span class="date">2026-06-22（月）</span><span class="meta"><span><b>10h39m</b></span><span>00:00〜23:49</span></span></a></li>
+<li><a href="daily/2026-06-21.html"><span class="date">2026-06-21（日）</span><span class="meta"><span><b>11h01m</b></span><span>04:42〜24:00</span></span></a></li>
+<li><a href="daily/2026-06-20.html"><span class="date">2026-06-20（土）</span><span class="meta"><span><b>2h34m</b></span><span>02:56〜10:23</span></span></a></li>
+<li><a href="daily/2026-06-19.html"><span class="date">2026-06-19（金）</span><span class="meta"><span><b>2h43m</b></span><span>02:26〜19:11</span></span></a></li>
+<li><a href="daily/2026-06-18.html"><span class="date">2026-06-18（木）</span><span class="meta"><span><b>6h22m</b></span><span>10:45〜22:07</span></span></a></li>
+<li><a href="daily/2026-06-17.html"><span class="date">2026-06-17（水）</span><span class="meta"><span><b>7h16m</b></span><span>00:45〜20:01</span></span></a></li>
+<li><a href="daily/2026-06-16.html"><span class="date">2026-06-16（火）</span><span class="meta"><span><b>6h24m</b></span><span>01:16〜23:16</span></span></a></li>
+<li><a href="daily/2026-06-15.html"><span class="date">2026-06-15（月）</span><span class="meta"><span><b>8h50m</b></span><span>00:08〜23:49</span></span></a></li>
+</ul><div class="pager" id="pager"></div>
+<footer>— log —</footer>
+</div><script>
+(function(){
+  var PER=100;
+  var items=[].slice.call(document.querySelectorAll('#daily-list > li'));
+  var pager=document.getElementById('pager');
+  var pages=Math.ceil(items.length/PER)||1;
+  function show(p){
+    items.forEach(function(el,i){el.style.display=(i>=p*PER&&i<(p+1)*PER)?'':'none';});
+    [].slice.call(pager.children).forEach(function(b,i){b.classList.toggle('active',i===p);});
+    window.scrollTo(0,0);
   }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #1a1a19;
-      --fg: #e4e3df;
-      --muted: #8f8f88;
-      --line: #2e2e2b;
-      --card: #222220;
-      --accent: #9aa8bb;
-    }
+  if(pages>1){
+    for(var p=0;p<pages;p++){(function(p){
+      var b=document.createElement('button');
+      var a=p*PER+1,z=Math.min((p+1)*PER,items.length);
+      b.textContent=a+'–'+z;
+      b.onclick=function(){show(p);};
+      pager.appendChild(b);
+    })(p);}
   }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--fg);
-    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN",
-                 "Noto Sans JP", "Segoe UI", sans-serif;
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-  }
-  .wrap {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 56px 20px 96px;
-  }
-  header {
-    border-bottom: 1px solid var(--line);
-    padding-bottom: 20px;
-    margin-bottom: 40px;
-  }
-  h1 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    margin: 0 0 6px;
-  }
-  .sub {
-    color: var(--muted);
-    font-size: 0.85rem;
-    margin: 0;
-  }
-  .entry {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 22px 24px;
-    margin-bottom: 20px;
-  }
-  .entry-date {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--accent);
-    margin: 0 0 4px;
-  }
-  .entry-total {
-    font-size: 0.8rem;
-    color: var(--muted);
-    margin: 0 0 14px;
-  }
-  .entry ul {
-    margin: 0;
-    padding-left: 1.2em;
-  }
-  .entry li {
-    margin: 3px 0;
-    font-size: 0.92rem;
-  }
-  .entry li b { font-weight: 600; }
-  footer {
-    margin-top: 48px;
-    color: var(--muted);
-    font-size: 0.75rem;
-    text-align: center;
-  }
-</style>
-</head>
-<body>
-  <div class="wrap">
-    <header>
-      <h1>作業ログ</h1>
-      <p class="sub">Daily Report</p>
-    </header>
-
-    <!-- ▼▼ 新しい日報はこの下（entries の一番上）に追加していきます ▼▼ -->
-    <main id="entries">
-
-      <article class="entry">
-        <p class="entry-date">2026/07/01（水）</p>
-        <p class="entry-total">稼働 2h34m</p>
-        <ul>
-          <li><b>プロジェクトA</b>：1h01m</li>
-          <li><b>プロジェクトB</b>：0h49m</li>
-          <li><b>プロジェクトC</b>：0h31m</li>
-          <li><b>プロジェクトD</b>：0h12m</li>
-        </ul>
-      </article>
-
-    </main>
-    <!-- ▲▲ ここまで entries ▲▲ -->
-
-    <footer>— log —</footer>
-  </div>
-</body>
-</html>
+  show(0);
+})();
+</script></body></html>
