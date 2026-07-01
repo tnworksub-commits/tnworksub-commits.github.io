@@ -35,6 +35,13 @@ nav.top a.active{color:var(--fg);font-weight:600;border-bottom-color:var(--accen
 .card strong{font-weight:600}
 .back{display:inline-block;margin-bottom:20px;font-size:.85rem}
 .about p{font-size:.92rem}.about li{font-size:.9rem}
+.author-card{margin-bottom:18px}
+.author-label{font-size:.68rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:7px}
+.author-name{font-size:1.1rem;font-weight:600;margin:0}
+.post .postdate{font-size:.75rem;color:var(--muted);margin:0 0 2px}
+.post h1{font-size:1.35rem;margin:0 0 16px}
+.post p{font-size:.95rem}
+.post h2{font-size:1.05rem}
 .summary{margin:0 0 34px}
 .dash{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px}
 .dash .cell{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
