@@ -43,13 +43,25 @@ nav.top a.active{color:var(--fg);font-weight:600;border-bottom-color:var(--accen
 .note{font-size:.74rem;color:var(--muted);margin:10px 2px 0}
 .note strong{color:var(--accent)}
 .section-t{font-size:.76rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin:28px 0 10px}
-.heatmap{display:flex;gap:3px;overflow-x:auto;padding-bottom:4px}
+.pstat{font-size:.85rem;color:var(--muted);margin:0 0 4px}
+.pstat strong{color:var(--accent);font-weight:600}
+.hm-wrap{--hc:13px;overflow-x:auto;padding-bottom:4px}
+.hm-wrap.hm-lg{--hc:30px}
+.hm-months{display:flex;gap:3px;margin-left:22px;height:15px}
+.hm-months .m{width:var(--hc);flex:none;font-size:.66rem;color:var(--muted);white-space:nowrap;overflow:visible}
+.hm-body{display:flex}
+.hm-wd{display:flex;flex-direction:column;gap:3px;margin-right:6px}
+.hm-wd span{height:var(--hc);line-height:var(--hc);width:15px;text-align:right;font-size:.6rem;color:var(--muted)}
+.heatmap{display:flex;gap:3px}
 .hm-col{display:flex;flex-direction:column;gap:3px}
-.hm-cell{width:12px;height:12px;border-radius:2px;background:var(--hm0);flex:none}
+.hm-cell{width:var(--hc);height:var(--hc);border-radius:2px;background:var(--hm0);flex:none}
 .hm-cell.l1{background:var(--hm1)}.hm-cell.l2{background:var(--hm2)}.hm-cell.l3{background:var(--hm3)}.hm-cell.l4{background:var(--hm4)}
 .hm-cell.ph{background:transparent}
+.hm-cell.num{display:flex;align-items:center;justify-content:center;border-radius:5px;font-size:.72rem;color:var(--fg)}
+.hm-cell.num.l0{color:var(--muted)}
+.hm-cell.num.l3,.hm-cell.num.l4{color:#fff}
 .hm-legend{display:flex;align-items:center;gap:4px;font-size:.7rem;color:var(--muted);margin-top:7px}
-.hm-legend .hm-cell{display:inline-block}
+.hm-legend .hm-cell{--hc:12px;display:inline-block}
 .pbar{display:flex;height:22px;border-radius:6px;overflow:hidden;border:1px solid var(--line)}
 .pbar span{display:block;min-width:2px}
 .plegend{list-style:none;padding:0;margin:12px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:5px 14px}
